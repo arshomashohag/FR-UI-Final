@@ -1,0 +1,29 @@
+#products-display {
+    height: 1450px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.selected-filter {
+    background-color: #f7941d;
+    padding: 5px;
+    
+}
+
+.selected-filter a {
+
+    color: rgb(255, 255, 255) !important;
+}
+
+.not-found-warning {
+    margin-top: 10px;
+    
+}
+
+.content-tags {
+    margin-top: unset !important;
+}
+
+.tag-inner {
+    padding-left: unset !important;
+}

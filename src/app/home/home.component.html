@@ -1,0 +1,357 @@
+<!-- <div [ngBusy]="{busy: busy, backdrop: true}"></div> -->
+ <!-- Preloader -->
+ <div class="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-icon">
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</div>
+<!-- End Preloader -->
+
+<!-- Slider Area -->
+<section class="hero-slider">
+  <!-- Single Slider -->
+  <div class="single-slider" [ngStyle]="{background: 'url(' + apiLink + '/banner/main-banner-1.jpg)'}">
+      <div class="container">
+          <div class="row no-gutters">
+              <div class="col-lg-9 offset-lg-3 col-12">
+                  <div class="text-inner">
+                      <div class="row">
+                          <div class="col-lg-7 col-12">
+                              <div class="hero-text">
+                                  <h1><span>UP TO 50% OFF </span>Shirt For Man</h1>
+                                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur cupiditate
+                                      necessitatibus non
+                                      facilis ex officia at unde reprehenderit libero explicabo, quasi quisquam
+                                      quaerat saepe, amet
+                                      deserunt eligendi porro soluta obcaecati.</p>
+                                  <div class="button">
+                                      <a  class="btn">Shop Now!</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!--/ End Single Slider -->
+</section>
+<!--/ End Slider Area -->
+<!-- Start Small Banner  -->
+<section class="small-banner section">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Single Banner  -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="single-banner">
+          <img height="300" width="600" src="{{apiLink + '/banner/banner-1.jpg'}}" alt="#">
+          <div class="content">
+            <p>Man's Collectons</p>
+            <h3>Summer travel <br> collection</h3>
+            <a >Discover Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- /End Single Banner  -->
+      <!-- Single Banner  -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="single-banner">
+          <img height="300" width="600" src="{{apiLink + '/banner/banner-2.jpg'}}" alt="#">
+          <div class="content">
+            <p>Bag Collectons</p>
+            <h3>Awesome Bag <br> 2020</h3>
+            <a >Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- /End Single Banner  -->
+      <!-- Single Banner  -->
+      <div class="col-lg-4 col-12">
+        <div class="single-banner tab-height">
+          <img height="300" width="600" src="{{apiLink + '/banner/banner-3.jpg'}}" alt="#">
+          <div class="content">
+            <p>Flash Sale</p>
+            <h3>Mid Season <br> Up to <span>40%</span> Off</h3>
+            <a >Discover Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- /End Single Banner  -->
+    </div>
+  </div>
+</section>
+<!-- End Small Banner -->
+
+<!-- Start Most Popular -->
+<div class="product-area most-popular section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h2>New Item</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="owl-carousel owl-theme owl-loaded popular-slider">
+          <!-- Start Single Product -->
+          <div *ngFor="let item of products; let i = index" class="single-product">
+            <div class="product-img">
+              <a [routerLink]="['products']" [queryParams]="{image_id: item.id}">
+                <img class="default-img" src="{{apiLink + '/images/' + item.id}}" alt="#">
+                <span class="new">New</span>
+              </a>
+              <div class="button-head">
+                <div class="product-action">
+                  <a data-toggle="modal" data-target="#exampleModal" title="Quick View" ><i
+                      class=" ti-eye"></i><span>Quick Shop</span></a>
+                  <a title="Wishlist" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                  <a title="Compare" ><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                </div>
+                <div class="product-action-2">
+                  <a title="Add to cart" >Add to cart</a>
+                </div>
+              </div>
+            </div>
+            <div class="product-content">
+              <h3><a [routerLink]="['products']" [queryParams]="{image_id: item.id}">{{item.productDisplayName}}</a></h3>
+              <div class="product-price">
+                <span class="old">$60.00</span>
+                <span>$50.00</span>
+              </div>
+            </div>
+            <span *ngIf="i == (products.length-1)" class="last-item">{{ initiateCarousel(i) }}</span>
+          </div>
+          <!-- End Single Product -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Most Popular Area -->
+<!-- Start Product Area -->
+<div class="product-area section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h2>Trending Item</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="product-info">
+          <div class="nav-main">
+            <!-- Tab Nav -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+              <li *ngFor="let category of masterCategories; let i=index" class="nav-item">
+                <a class="nav-link {{ i==0 ? 'active': '' }}" data-toggle="tab"
+                  href="#{{category.split(' ').join('_')}}" role="tab">{{category}}</a>
+              </li>
+
+            </ul>
+            <!--/ End Tab Nav -->
+          </div>
+          <div class="tab-content" id="myTabContent">
+            <!-- Start Single Tab -->
+            <div *ngFor="let category of masterCategories; let i=index"
+              class="tab-pane fade {{ i==0 ? 'show active': '' }}" id="{{category.split(' ').join('_')}}"
+              role="tabpanel">
+              <div class="tab-single">
+                <div class="row">
+
+                  <div *ngFor="let item of trendingItems[category]" class="col-xl-3 col-lg-4 col-md-4 col-12">
+                    <div class="single-product">
+                      <div class="product-img">
+                        <a [routerLink]="['products']" [queryParams]="{image_id: item.id}" >
+                          <img class="default-img" src="{{apiLink + '/images/' + item.id}}" alt="#">
+                          <img class="hover-img" src="{{apiLink + '/images/' + item.id}}" alt="#">
+                        </a>
+                        <div class="button-head">
+                          <div class="product-action">
+                            <a data-toggle="modal" data-target="#exampleModal" title="Quick View" ><i
+                                class=" ti-eye"></i><span>Quick Shop</span></a>
+                            <a title="Wishlist" ><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                            <a title="Compare" ><i class="ti-bar-chart-alt"></i><span>Add to
+                                Compare</span></a>
+                          </div>
+                          <div class="product-action-2">
+                            <a title="Add to cart" >Add to cart</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="product-content">
+                        <h3><a [routerLink]="['products']" [queryParams]="{image_id: item.id}" >{{item.productDisplayName}}</a></h3>
+                        <div class="product-price">
+                          <span>$29.00</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <!--/ End Single Tab -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Product Area -->
+
+<!-- Start Midium Banner  -->
+<section class="midium-banner">
+  <div class="container">
+    <div class="row">
+      <!-- Single Banner  -->
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="single-banner">
+          <img height="370" width="600" src="{{apiLink + '/banner/medium-banner-1.jpg'}}" alt="#">
+          <div class="content">
+            <p>Man's Collectons</p>
+            <h3>Man's items <br>Up to<span> 50%</span></h3>
+            <a >Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- /End Single Banner  -->
+      <!-- Single Banner  -->
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="single-banner">
+          <img height="370" width="600" src="{{apiLink + '/banner/medium-banner-2.jpg'}}" alt="#">
+          <div class="content">
+            <p>shoes women</p>
+            <h3>mid season <br> up to <span>70%</span></h3>
+            <a  class="btn">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- /End Single Banner  -->
+    </div>
+  </div>
+</section>
+<!-- End Midium Banner -->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close"
+            aria-hidden="true"></span></button>
+      </div>
+      <div class="modal-body">
+        <div class="row no-gutters">
+          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+            <!-- Product Slider -->
+            <div class="product-gallery">
+              <div class="quickview-slider-active">
+
+                <div class="single-slider">
+                  <img src="https://via.placeholder.com/569x528" alt="#">
+                </div>
+                 
+              </div>
+            </div>
+            <!-- End Product slider -->
+          </div>
+          <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+            <div class="quickview-content">
+              <h2>Flared Shift Dress</h2>
+              <div class="quickview-ratting-review">
+                <div class="quickview-ratting-wrap">
+                  <div class="quickview-ratting">
+                    <i class="yellow fa fa-star"></i>
+                    <i class="yellow fa fa-star"></i>
+                    <i class="yellow fa fa-star"></i>
+                    <i class="yellow fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <a > (1 customer review)</a>
+                </div>
+                <div class="quickview-stock">
+                  <span><i class="fa fa-check-circle-o"></i> in stock</span>
+                </div>
+              </div>
+              <h3>$29.00</h3>
+              <div class="quickview-peragraph">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum ad impedit pariatur
+                  esse optio tempora sint ullam autem deleniti nam in quos qui nemo ipsum numquam.</p>
+              </div>
+              <div class="size">
+                <div class="row">
+                  <div class="col-lg-6 col-12">
+                    <h5 class="title">Size</h5>
+                    <select>
+                      <option selected="selected">s</option>
+                      <option>m</option>
+                      <option>l</option>
+                      <option>xl</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 col-12">
+                    <h5 class="title">Color</h5>
+                    <select>
+                      <option selected="selected">orange</option>
+                      <option>purple</option>
+                      <option>black</option>
+                      <option>pink</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="quantity">
+                <!-- Input Order -->
+                <div class="input-group">
+                  <div class="button minus">
+                    <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus"
+                      data-field="quant[1]">
+                      <i class="ti-minus"></i>
+                    </button>
+                  </div>
+                  <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="1000" value="1">
+                  <div class="button plus">
+                    <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
+                      <i class="ti-plus"></i>
+                    </button>
+                  </div>
+                </div>
+                <!--/ End Input Order -->
+              </div>
+              <div class="add-to-cart">
+                <a  class="btn">Add to cart</a>
+                <a  class="btn min"><i class="ti-heart"></i></a>
+                <a  class="btn min"><i class="fa fa-compress"></i></a>
+              </div>
+              <div class="default-social">
+                <h4 class="share-now">Share:</h4>
+                <ul>
+                  <li><a class="facebook" ><i class="fa fa-facebook"></i></a></li>
+                  <li><a class="twitter" ><i class="fa fa-twitter"></i></a></li>
+                  <li><a class="youtube" ><i class="fa fa-pinterest-p"></i></a></li>
+                  <li><a class="dribbble" ><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal end -->
+
