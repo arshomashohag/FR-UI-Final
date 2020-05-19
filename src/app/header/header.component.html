@@ -161,7 +161,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="#">top 100 offer</a></li>
+                                <li><a [routerLink]="['products']">top 100 offer</a></li>
                                 <li *ngFor="let item of masterCategories"><a [routerLink]="['products']"
                                         [queryParams]="{master_category: item}">{{item}}</a></li>
                             </ul>
