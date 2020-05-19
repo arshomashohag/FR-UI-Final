@@ -55,7 +55,7 @@ export class SearchedProductsComponent implements OnInit, OnDestroy {
 
     });
 
-
+     
   }
 
   subscribeForSerchedProduct() {

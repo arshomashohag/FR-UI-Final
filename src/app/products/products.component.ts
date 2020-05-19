@@ -85,7 +85,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     );
 
-
+     
   }
 
   ngAfterViewInit() {

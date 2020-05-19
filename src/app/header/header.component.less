@@ -1,6 +1,7 @@
 .avatar-upload {
     position: relative;
-    max-width: 205px; 
+    min-height: 100%;
+    height: 100%;
     .avatar-edit {
         position: absolute;
         right: 12px;
@@ -11,18 +12,32 @@
         }
     }
     .avatar-preview {
-        width: 550px;
-        height: 500px;
+        width: 100%;
+        min-width: 100%;
+        height: 100%;
+        min-height: 100%;
         position: relative;
         border: 6px solid #F8F8F8;
         box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
         > div {
             width: 100%;
             height: 100%;
-            background-size: cover;
+            min-height: 100%;
+            background-size: fill;
             background-repeat: no-repeat;
             background-position: center;
         }
+    }
+}
+
+@media ( max-width:992px ) {
+    .avatar-upload {
+        min-height: 200px;
+        max-width: 200px;
+    }
+
+    .avatar-preview div {
+        background-size: contain !important;
     }
 }
 

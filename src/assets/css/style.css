@@ -1702,6 +1702,13 @@ Version:1.0
 .most-popular .owl-carousel .owl-controls .owl-nav .owl-next{
 	right:0;
 }
+
+.owl-nav .owl-prev{
+	left:0;
+}
+.owl-nav .owl-next{
+	right:0;
+}
 /*======================================
    End Most Popular CSS
 ========================================*/
@@ -1758,7 +1765,7 @@ Version:1.0
   position: relative;
 }
 .single-product .product-img a img {
-  width: 260px;
+  width: 261px;
   height: 347px;
 }
 .single-product .product-img a img.hover-img {

@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ApiService } from '../api.service';
 import { Subscription } from 'rxjs';
 import { HomeDataService } from '../home-data.service';
 
@@ -17,7 +16,6 @@ declare var $: any;
 export class HomeComponent implements OnInit, AfterViewInit {
 
   constructor(
-    private apiService: ApiService,
     private homeService: HomeDataService,
     private menuService: MenuFlagService
   ) { }
@@ -54,6 +52,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   gender: any;
 
   searchedImage: any;
+  carouselOptions: any;
 
   p: any;
 
@@ -100,33 +99,64 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     this.menuService.addData({ 'category': true, 'home': true, 'product': false })
 
-    $("body").click((e) => {
-      this.masterCatFocus = false;
-      this.subCatFocus = false;
-      this.typeFocus = false;
-      this.colorFocus = false;
+    // $("body").click((e) => {
+    //   this.masterCatFocus = false;
+    //   this.subCatFocus = false;
+    //   this.typeFocus = false;
+    //   this.colorFocus = false;
 
-      if (e.target.id == "master-category") {
-        this.masterCatFocus = true
-      } else if (e.target.id == "sub-category") {
-        this.subCatFocus = true
-      } else if (e.target.id == "article-type") {
-        this.typeFocus = true
-      } else if (e.target.id == "base-color") {
-        this.colorFocus = true
+    //   if (e.target.id == "master-category") {
+    //     this.masterCatFocus = true
+    //   } else if (e.target.id == "sub-category") {
+    //     this.subCatFocus = true
+    //   } else if (e.target.id == "article-type") {
+    //     this.typeFocus = true
+    //   } else if (e.target.id == "base-color") {
+    //     this.colorFocus = true
+    //   }
+    // });
+
+    this.carouselOptions = {
+      items: 1,
+      autoplay: true,
+      autoplayTimeout: 5000,
+      smartSpeed: 400,
+      animateIn: 'fadeIn',
+      animateOut: 'fadeOut',
+      autoplayHoverPause: true,
+      autoWidth: true,
+      nav: true,
+      loop: true,
+      merge: true,
+      dots: false,
+      navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
+      responsive: {
+        0: {
+          items: 1
+        },
+        400: {
+          items: 2
+        },
+        740: {
+          items: 3
+        },
+        940: {
+          items: 4
+        }
       }
-    });
-
+    };
 
 
     $('.preloader').delay(1000).fadeOut('slow', function () {
-      $(this).remove();
+      $(this).hide();
     });
+
   }
   ngAfterViewInit() {
 
 
   }
+
   initiateCarousel(index) {
 
     if (!this.caresoulInitiated) {
@@ -163,6 +193,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
           },
         }
       });
+
     }
 
     return '';
